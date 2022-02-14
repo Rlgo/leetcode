@@ -1,16 +1,22 @@
+
 /**
- * @param {number[]} nums1
- * @param {number[]} nums2
+ * @param {string} s
  * @return {number}
- * {@link https://leetcode.com/submissions/detail/640936863/}
+ * {@link https://leetcode.com/submissions/detail/640929875/}
  */
-var findMedianSortedArrays = function (nums1, nums2) {
-  const merge = [...nums1, ...nums2].sort((a, b) => a - b);
-  let half = merge.length / 2;
-  if (half % 1 === 0)
-    return (merge[half] + merge[half - 1]) / 2;
-  else {
-    half = Math.floor(half);
-    return merge[half];
-  }
-};
+var lengthOfLongestSubstring = function (s) {
+  const chars = s.split("");
+  let ans = 0;
+
+  chars.forEach((char, i) => {
+    let set = new Set(char)
+    for (let j = i + 1; j < chars.length; j++) {
+      const char2 = chars[j];
+      if (set.has(char2))
+        break;
+      else set.add(char2)
+    }
+    ans = Math.max(ans, set.size);
+  })
+  return ans;
+}; 
